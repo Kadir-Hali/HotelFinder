@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HotelFinder.Business\HotelFinder.Business.csproj" />
+  </ItemGroup>
+
 </Project>

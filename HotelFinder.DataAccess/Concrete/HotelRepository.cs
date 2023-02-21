@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 
 namespace HotelFinder.DataAccess.Concrete
 {
-    internal class HotelRepository : IHotelRepository
+    public class HotelRepository : IHotelRepository
     {
+        private HotelDbContext _hotelDbContext;
+        public HotelRepository(HotelDbContext hotelDbContext)
+        {
+            _hotelDbContext = hotelDbContext;
+        }
         public Hotel CreateHotel(Hotel hotel)
         {
             using (var hotelDbContext = new HotelDbContext())

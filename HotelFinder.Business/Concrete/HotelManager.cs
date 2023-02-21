@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace HotelFinder.Business.Concrete
 {
-    public class HotelManager:IHotelService
+    public class HotelManager : IHotelService
     {
         private IHotelRepository _hotelRepository;
-
         public HotelManager(IHotelRepository hotelRepository)
         {
-            _hotelRepository = hotelRepository;
+            //_hotelRepository = new HotelRepository();
+            _hotelRepository = hotelRepository; // dependency injection prensibine aykırı olan new ile bir nesne oluşturmamak için için dependency injection gereği startup da tanımlama yapıyoruz
         }
-
         public Hotel CreateHotel(Hotel hotel)
         {
             return _hotelRepository.CreateHotel(hotel);
@@ -35,17 +34,21 @@ namespace HotelFinder.Business.Concrete
 
         public Hotel GetHotelById(int id)
         {
-            if (id>0)
+            if (id > 0)
             {
                 return _hotelRepository.GetHotelById(id);
             }
-
-            throw new Exception("id can not be less than 1");
+            else
+            {
+                throw new Exception("id can not less than 1");
+            }
         }
 
-        public void UpdateHotel(Hotel hotel)
+        public Hotel UpdateHotel(Hotel hotel)
         {
-            _hotelRepository.UpdateHotel(hotel);
+            return _hotelRepository.UpdateHotel(hotel);
         }
+
+       
     }
 }
